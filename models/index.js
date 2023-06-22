@@ -7,8 +7,8 @@ const ProductTag = require('./ProductTag');
 // Products belongsTo Category
 Product.belongsTo(Category, {
   foreignKey: 'category_id',
-  // When we delete a Reader, make sure to also delete the associated Library Card.
-  onDelete: 'CASCADE',
+  // When we delete a Product, make sure to also delete the associated Library Card.
+  //onDelete: 'CASCADE',
 });
 
 // Categories have many Products
@@ -18,12 +18,13 @@ Category.hasMany(Product, {
 
 
 // Products belongToMany Tags (through ProductTag)
-Product.belongToMany(Tag, {
+Product.belongsToMany(Tag, {
   through: ProductTag,
+
 });
 
 // Tags belongToMany Products (through ProductTag)
-Tag.belongToMany(Product,{
+Tag.belongsToMany(Product, {
   through: ProductTag,
 })
 
